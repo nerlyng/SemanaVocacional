@@ -1,11 +1,185 @@
----
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content="Astro" />
+		<title>Reza por un Sacerdote - Diócesis León, Nicaragua</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				text-align: center;
+				margin-top: 60px;
+				background: #f9f9f9;
+			}
+			h1 {
+				color: #333;
+			}
+			button {
+				padding: 20px 40px;
+				font-size: 22px;
+				border: none;
+				border-radius: 12px;
+				background: #007bff;
+				color: white;
+				cursor: pointer;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+				transition: background 0.3s ease;
+			}
+			button:hover {
+				background: #0056b3;
+			}
+			#resultado {
+				margin-top: 30px;
+				font-size: 28px;
+				font-weight: bold;
+				color: #0f88a6;
+			}
+			/* Contenedor de la foto */
+			#foto-container {
+				margin-top: 20px;
+				display: flex;
+				justify-content: center;
+			}
+			#fotosacerdote {
+				max-width: 250px;
+				width: 100%;
+				height: auto;
+				border-radius: 16px;
+				box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+				display: none; /* oculto hasta que cargue */
+			}
+			.footer {
+				font-size: 16px;
+				color: #555;
+				text-align: center;
+				margin: 30px auto;
+				max-width: 600px;
+				line-height: 1.6;
+			}
+			.footer small {
+				font-size: 11px;
+				display: block;
+				margin-top: 20px;
+			}
+		</style>
+	</head>
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
----
+	<body>
+		<img
+			src="logopv.jpg"
+			alt="Logo"
+			style="width: 250px; margin-bottom: 20px"
+		/>
+		<h1>Reza por la vocacion de un seminarista.</h1>
+		<button id="btn">🙏 Rezaré por</button>
 
-<Layout>
-	<Welcome />
-</Layout>
+		<div id="resultado"></div>
+
+		<!-- Contenedor para centrar la foto -->
+		<div id="foto-container">
+			<img id="fotoseminarista" src="" alt="Foto del seminarista" />
+		</div>
+
+		<p id="contador"></p>
+
+		<div class="footer">
+			<p>
+				Me comprometo a rezar por este seminarista en la semana vocacional
+			</p>
+			<p>
+				Semana de las vocaciones, Nicaragua del 12 al 18 de Abril
+				2025.
+			</p>
+			<small>
+				® Medios de comunicación de la Diócesis de León, Nicaragua.
+			</small>
+		</div>
+
+		<script>
+			const btn = document.getElementById("btn");
+			const resultado = document.getElementById("resultado");
+			const foto = document.getElementById("fotoseminarista") as HTMLImageElement | null;
+			const contador = document.getElementById("contador");
+
+			// Función para animar el contador
+			function animateCounter(oldValue: number, newValue: number) 
+			{
+				const duration = 800; // duración en ms
+  				const startTime = performance.now();
+
+		  		function update(currentTime: number): void {
+    			const elapsed = currentTime - startTime;
+		   		const progress = Math.min(elapsed / duration, 1);
+    			const value = Math.floor(oldValue + (newValue - oldValue) * progress);
+    		if (contador) {  contador.textContent = `Total de intenciones: ${value}`; }
+    			if (progress < 1) requestAnimationFrame(update);
+  				}
+	  				requestAnimationFrame(update);
+			}
+
+			 // Función para obtener el total de intenciones
+ 			let lastTotal = 0;
+
+			async function fetchTotal() {
+				if (!contador) return; // ⚠️ salir si el elemento no existe
+   			 try {
+			   	   const res = await fetch("/api/intenciones-count");
+  			    if (!res.ok) throw new Error("Error al obtener el total");
+  			    const data = await res.json();
+				 const newTotal = data.total;
+				 animateCounter(lastTotal, newTotal);
+   				 lastTotal = newTotal;
+  			   // contador.textContent = `Total de intenciones: ${data.total}`;
+ 			   } catch (err) {
+ 			     contador.textContent = "No se pudo obtener el total";
+  			    console.error(err);
+  			  }
+			} 
+
+			// Ejecutar al cargar la página
+ 			 fetchTotal();
+
+			if (btn && resultado && foto) {
+				btn.addEventListener("click", async () => {
+					resultado.textContent = "Cargando...";
+					foto.style.display = "none";
+
+					try {
+						const res = await fetch("/api/nombre");
+			
+
+						let data = await res.json();
+						if (Array.isArray(data)) data = data[0];
+
+						if (!data || !data.nombre) {
+							resultado.textContent = "No hay seminaristas disponibles.";
+							foto.style.display = "none";
+							return;
+						}
+
+						// Mostrar nombre
+						resultado.textContent = data.nombre;
+
+						// Mostrar foto si existe
+						if (data.foto) {
+							foto.src = data.foto;
+							foto.style.display = "block";
+						} else {
+							foto.style.display = "none";
+						}
+					//	let lastTotal = 0;
+
+					// Actualizar el contador después de insertar la intención
+        			fetchTotal();
+
+					} catch (err) {
+						resultado.textContent = "❌ Error al obtener el seminarista.";
+						foto.style.display = "none";
+						console.error(err);
+					}
+				});
+			}
+		</script>
+	</body>
+</html>
