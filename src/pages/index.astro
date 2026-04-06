@@ -74,7 +74,9 @@
 		<h1>Reza por la vocacion de un seminarista.</h1>
 		<button id="btn">🙏 Rezaré por</button>
 
-		<div id="resultado"></div>
+		<div id="seminarista"></div>
+		<div id="anno"></div>
+		<div id="parroquia"></div>
 
 		<!-- Contenedor para centrar la foto -->
 		<div id="foto-container">
@@ -85,10 +87,10 @@
 
 		<div class="footer">
 			<p>
-				Me comprometo a rezar por este seminarista en la semana vocacional
+				Me comprometo a rezar por este seminarista en todo el año.
 			</p>
 			<p>
-				Semana de las vocaciones, Nicaragua del 12 al 18 de Abril
+				Semana de las vocaciones, Nicaragua del 12 al 18 de Abril.
 				2025.
 			</p>
 			<small>
@@ -98,7 +100,7 @@
 
 		<script>
 			const btn = document.getElementById("btn");
-			const resultado = document.getElementById("resultado");
+			const seminarista = document.getElementById("seminarista");
 			const foto = document.getElementById("fotoseminarista") as HTMLImageElement | null;
 			const contador = document.getElementById("contador");
 
@@ -140,9 +142,9 @@
 			// Ejecutar al cargar la página
  			 fetchTotal();
 
-			if (btn && resultado && foto) {
+			if (btn && seminarista && foto) {
 				btn.addEventListener("click", async () => {
-					resultado.textContent = "Cargando...";
+					seminarista.textContent = "Cargando...";
 					foto.style.display = "none";
 
 					try {
@@ -153,13 +155,13 @@
 						if (Array.isArray(data)) data = data[0];
 
 						if (!data || !data.nombre) {
-							resultado.textContent = "No hay seminaristas disponibles.";
+							seminarista.textContent = "No hay seminaristas disponibles.";
 							foto.style.display = "none";
 							return;
 						}
 
 						// Mostrar nombre
-						resultado.textContent = data.nombre;
+						seminarista.textContent = data.nombre;
 
 						// Mostrar foto si existe
 						if (data.foto) {
@@ -174,7 +176,7 @@
         			fetchTotal();
 
 					} catch (err) {
-						resultado.textContent = "❌ Error al obtener el seminarista.";
+						seminarista.textContent = "❌ Error al obtener el seminarista.";
 						foto.style.display = "none";
 						console.error(err);
 					}
