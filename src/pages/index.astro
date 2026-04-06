@@ -104,6 +104,15 @@
 	box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 	}
 
+	#btnCompartir {
+	background: #25D366;
+	margin-top: 15px;
+}
+
+#btnCompartir:hover {
+	background: #1ebe5d;
+}
+
 	.footer {
 		font-size: 14px;
 		color: #555;
@@ -132,6 +141,10 @@
 			<button id="btn">🙏 Rezaré por</button>
 
 			<div id="nombre"></div>
+			<button id="btnCompartir" style="margin-top: 15px; display:none;">
+				📲 Compartir en WhatsApp
+			</button>
+
 			<div id="anno"></div>
 			<div id="parroquia"></div>
 	
@@ -156,6 +169,8 @@
 		</div>
 
 		<script>
+			const btnCompartir = document.getElementById("btnCompartir");
+
 			const btn = document.getElementById("btn");
 			const nombre = document.getElementById("nombre");
 			const foto = document.getElementById("fotoseminarista") as HTMLImageElement | null;
@@ -241,7 +256,23 @@
 
 					// Actualizar el contador después de insertar la intención
         			fetchTotal();
+					
+					//Poner lo de compartir WhatsApp
+					if (btnCompartir) {
+	btnCompartir.style.display = "inline-block";
 
+	btnCompartir.onclick = () => {
+		const texto = `🙏 Hoy rezaré por ${data.nombre}
+📍 ${data.parroquia ?? ""}
+🎓 ${data.anno ?? ""}
+
+Únete a esta iniciativa de oración 🙌`;
+
+		const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+		window.open(url, "_blank");
+	};
+}
+					
 					} catch (err) {
 						nombre.textContent = "❌ Error al obtener el seminarista.";
 						foto.style.display = "none";
