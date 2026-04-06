@@ -137,7 +137,7 @@
 		/>
 		
 		<div class="card">
-			
+
 			<h1>Reza por la vocación de</h1>
 			<button id="btn">🙏 Rezaré por</button>
 
@@ -260,20 +260,21 @@
         			fetchTotal();
 					
 					//Poner lo de compartir WhatsApp
-					if (btnCompartir) {
-	btnCompartir.style.display = "inline-block";
+					if (btnCompartir) 
+					{
+						btnCompartir.style.display = "inline-block";
+						btnCompartir.onclick = () => {
 
-	btnCompartir.onclick = () => {
-		const texto = `🙏 Hoy rezaré por ${data.nombre}
-📍 ${data.parroquia ?? ""}
-🎓 ${data.anno ?? ""}
+						const texto = `🙏 Hoy rezaré por ${data.nombre}
+						📍 ${data.parroquia ?? ""}
+						🎓 ${data.anno ?? ""}
+						Únete a esta iniciativa de oración 🙌
+						https://semanavocacional.vercel.app/ `;
 
-Únete a esta iniciativa de oración 🙌`;
-
-		const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
-		window.open(url, "_blank");
-	};
-}
+						const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+						window.open(url, "_blank");
+						};
+					}
 					
 					} catch (err) {
 						nombre.textContent = "❌ Error al obtener el seminarista.";
