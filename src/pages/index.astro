@@ -5,64 +5,107 @@
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content="Astro" />
 		<title>Reza por un Seminarista - Diócesis León, Nicaragua</title>
-		<style>
-			body {
-				font-family: Arial, sans-serif;
-				text-align: center;
-				margin-top: 60px;
-				background: #f9f9f9;
-			}
-			h1 {
-				color: #333;
-			}
-			button {
-				padding: 20px 40px;
-				font-size: 22px;
-				border: none;
-				border-radius: 12px;
-				background: #007bff;
-				color: white;
-				cursor: pointer;
-				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-				transition: background 0.3s ease;
-			}
-			button:hover {
-				background: #0056b3;
-			}
-			#nombre {
-				margin-top: 30px;
-				font-size: 28px;
-				font-weight: bold;
-				color: #0f88a6;
-			}
-			/* Contenedor de la foto */
-			#foto-container {
-				margin-top: 20px;
-				display: flex;
-				justify-content: center;
-			}
-			#fotosacerdote {
-				max-width: 250px;
-				width: 100%;
-				height: auto;
-				border-radius: 16px;
-				box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-				display: none; /* oculto hasta que cargue */
-			}
-			.footer {
-				font-size: 16px;
-				color: #555;
-				text-align: center;
-				margin: 30px auto;
-				max-width: 600px;
-				line-height: 1.6;
-			}
-			.footer small {
-				font-size: 11px;
-				display: block;
-				margin-top: 20px;
-			}
-		</style>
+	<style>
+	body {
+		font-family: 'Segoe UI', sans-serif;
+		text-align: center;
+		margin: 0;
+		padding: 20px;
+		background: linear-gradient(135deg, #f3f0ff, #ffffff);
+	}
+
+	h1 {
+		color: #3b2e83;
+		font-size: 28px;
+		margin-bottom: 20px;
+	}
+
+	.logo {
+		width: 220px;
+		margin-bottom: 10px;
+	}
+
+	.card {
+		background: white;
+		padding: 30px;
+		border-radius: 20px;
+		box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+		max-width: 400px;
+		margin: auto;
+	}
+
+	button {
+		padding: 15px 30px;
+		font-size: 18px;
+		border: none;
+		border-radius: 50px;
+		background: linear-gradient(135deg, #5a3ec8, #3b2e83);
+		color: white;
+		cursor: pointer;
+		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+		transition: all 0.3s ease;
+	}
+
+	button:hover {
+		transform: scale(1.05);
+		background: linear-gradient(135deg, #3b2e83, #5a3ec8);
+	}
+
+	#nombre {
+		margin-top: 20px;
+		font-size: 26px;
+		font-weight: bold;
+		color: #3b2e83;
+	}
+
+	#anno {
+		font-size: 18px;
+		color: #c49b63;
+		margin-top: 5px;
+	}
+
+	#parroquia {
+		font-size: 16px;
+		color: #666;
+		margin-top: 5px;
+		font-style: italic;
+	}
+
+	#foto-container {
+		margin-top: 20px;
+		display: flex;
+		justify-content: center;
+	}
+
+	#fotoseminarista {
+		max-width: 200px;
+		width: 100%;
+		border-radius: 50%;
+		box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+		display: none;
+		border: 4px solid #c49b63;
+	}
+
+	#contador {
+		margin-top: 20px;
+		font-size: 16px;
+		color: #444;
+	}
+
+	.footer {
+		font-size: 14px;
+		color: #555;
+		text-align: center;
+		margin-top: 30px;
+		line-height: 1.5;
+	}
+
+	.footer small {
+		font-size: 11px;
+		display: block;
+		margin-top: 15px;
+	}
+</style>
 	</head>
 
 	<body>
@@ -71,21 +114,23 @@
 			alt="Logo"
 			style="width: 250px; margin-bottom: 20px"
 		/>
-		<h1>Reza por la vocacion de un seminarista.</h1>
-		<button id="btn">🙏 Rezaré por</button>
+		
+		<div class="card">
+			<h1>Reza por la vocacion de</h1>
+			<button id="btn">🙏 Rezaré por</button>
 
-		<div id="nombre"></div>
-		<div id="anno"></div>
-		<div id="parroquia"></div>
+			<div id="nombre"></div>
+			<div id="anno"></div>
+			<div id="parroquia"></div>
 	
 
-		<!-- Contenedor para centrar la foto -->
-		<div id="foto-container">
-			<img id="fotoseminarista" src="" alt="Foto del seminarista" />
+			<!-- Contenedor para centrar la foto -->
+			<div id="foto-container">
+				<img id="fotoseminarista" src="" alt="Foto del seminarista" />
+			</div>
+
+			<p id="contador"></p>
 		</div>
-
-		<p id="contador"></p>
-
 		<div class="footer">
 			<p>
 				Me comprometo a rezar por este seminarista en todo el año.
