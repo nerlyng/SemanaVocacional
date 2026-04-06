@@ -46,7 +46,7 @@ export async function GET({ request }) {
    
     // Retornar nombre y foto pública
     return new Response(
-      JSON.stringify({ nombre: seminarista.nombre, foto: fotoPublica }),
+      JSON.stringify({ nombre: seminarista.nombre, foto: fotoPublica, anno:seminarista.anno, parroquia: seminarista.parroquia }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
 

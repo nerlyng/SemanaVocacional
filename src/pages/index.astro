@@ -29,7 +29,7 @@
 			button:hover {
 				background: #0056b3;
 			}
-			#seminarista {
+			#nombre {
 				margin-top: 30px;
 				font-size: 28px;
 				font-weight: bold;
@@ -74,7 +74,7 @@
 		<h1>Reza por la vocacion de un seminarista.</h1>
 		<button id="btn">🙏 Rezaré por</button>
 
-		<div id="seminarista"></div>
+		<div id="nombre"></div>
 		<div id="anno"></div>
 		<div id="parroquia"></div>
 	
@@ -101,7 +101,7 @@
 
 		<script>
 			const btn = document.getElementById("btn");
-			const seminarista = document.getElementById("seminarista");
+			const nombre = document.getElementById("nombre");
 			const foto = document.getElementById("fotoseminarista") as HTMLImageElement | null;
 			const contador = document.getElementById("contador");
 			
@@ -146,9 +146,9 @@
 			// Ejecutar al cargar la página
  			 fetchTotal();
 
-			if (btn && seminarista && foto) {
+			if (btn && nombre && foto) {
 				btn.addEventListener("click", async () => {
-					seminarista.textContent = "Cargando...";
+					nombre.textContent = "Cargando...";
 					foto.style.display = "none";
 
 					try {
@@ -159,13 +159,13 @@
 						if (Array.isArray(data)) data = data[0];
 
 						if (!data || !data.nombre) {
-							seminarista.textContent = "No hay seminaristas disponibles.";
+							nombre.textContent = "No hay seminaristas disponibles.";
 							foto.style.display = "none";
 							return;
 						}
 
 						// Mostrar nombre
-						seminarista.textContent = data.nombre;
+						nombre.textContent = data.nombre;
 						if (anno) {
  						 anno.textContent = data.anno ?? "";
 				}							
@@ -187,7 +187,7 @@
         			fetchTotal();
 
 					} catch (err) {
-						seminarista.textContent = "❌ Error al obtener el seminarista.";
+						nombre.textContent = "❌ Error al obtener el seminarista.";
 						foto.style.display = "none";
 						console.error(err);
 					}
