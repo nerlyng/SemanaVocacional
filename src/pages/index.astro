@@ -29,7 +29,7 @@
 			button:hover {
 				background: #0056b3;
 			}
-			#resultado {
+			#seminarista {
 				margin-top: 30px;
 				font-size: 28px;
 				font-weight: bold;
@@ -75,6 +75,8 @@
 		<button id="btn">🙏 Rezaré por</button>
 
 		<div id="seminarista"></div>
+		<div id="anno"></div>
+		<div id="parroquia"></div>
 	
 
 		<!-- Contenedor para centrar la foto -->
@@ -102,6 +104,9 @@
 			const seminarista = document.getElementById("seminarista");
 			const foto = document.getElementById("fotoseminarista") as HTMLImageElement | null;
 			const contador = document.getElementById("contador");
+			
+			const anno = document.getElementById("anno");
+			const parroquia = document.getElementById("parroquia");
 
 			// Función para animar el contador
 			function animateCounter(oldValue: number, newValue: number) 
@@ -161,6 +166,13 @@
 
 						// Mostrar nombre
 						seminarista.textContent = data.nombre;
+						if (anno) {
+ 						 anno.textContent = data.anno ?? "";
+				}							
+
+				if (parroquia) {
+  				parroquia.textContent = data.parroquia ?? "";
+					}
 
 						// Mostrar foto si existe
 						if (data.foto) {
