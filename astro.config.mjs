@@ -1,12 +1,12 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 
 
 // https://astro.build/config
 export default defineConfig({
-   output: "server",
+   output: "static",
    adapter: vercel({
     // aquí puedes poner opciones si quieres,
     // por ejemplo isr: true
