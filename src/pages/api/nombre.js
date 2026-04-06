@@ -8,7 +8,7 @@ export async function GET({ request }) {
 
    // 1. Llamar a la función que devuelve seminarista aleatorio
     const { data, error } = await supabase
-     .rpc("obtenerseminaristafoto");
+     .rpc("obtenerseminarista");
 
     if (error) throw error;
    
