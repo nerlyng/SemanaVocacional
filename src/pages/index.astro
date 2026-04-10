@@ -225,11 +225,13 @@
 			if (btn && nombre && foto) {
 				btn.addEventListener("click", async () => {
 					
-					if (btn instanceof HTMLButtonElement) 
+					if (btn instanceof HTMLButtonElement &&  localStorage.getItem("yaRezo")) 
 					{
 						btn.disabled = true;
 						btn.textContent = "🙏 Ya estás rezando";
 					}
+					
+					localStorage.setItem("yaRezo", "true");
 
 					nombre.textContent = "Cargando...";
 					foto.style.display = "none";
