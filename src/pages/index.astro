@@ -52,7 +52,7 @@
 		background: linear-gradient(135deg, #3b2e83, #5a3ec8);
 	}
 
-	#titulo1 {
+	.titulo1 {
 		font-size: 26px;
 	font-weight: 700;
 	color: #2c2c6c; /* azul fuerte */
@@ -151,7 +151,7 @@
 		/>
 		
 		<div class="card">
-			<div id="titulo1">Reza por la vocación de </div>
+			<p class="titulo1">🙏 Ya estás rezando por la vocación de </p>
 			<button id="btn">🙏 Rezaré por</button>
 
 			<div id="nombre"></div>
@@ -264,11 +264,11 @@
 			if (btn && nombre && foto) {
 				btn.addEventListener("click", async () => {
 				
-					//Codigo para evitar que se pulse varias veces
+					//*************Codigo para evitar que se pulse varias veces***********
 					//btn.disabled = true;
 					//btn.style.display = "none";
 					//localStorage.setItem("yaRezo", "true");
-					//****************************************** */
+					//*************************************************************** */
 					
 					nombre.textContent = "Cargando...";
 					foto.style.display = "none";
