@@ -257,7 +257,7 @@
 					//Codigo para evitar que se pulse varias veces
 					btn.disabled = true;
 					btn.style.display = "none";
-					//btn.textContent = "🙏 Ya estás rezando";
+					if (titulo) titulo.textContent = "🙏 Ya estas rezando por la vocación de ";
 					localStorage.setItem("yaRezo", "true");
 					
 					nombre.textContent = "Cargando...";
