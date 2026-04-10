@@ -224,6 +224,10 @@
 
 			if (btn && nombre && foto) {
 				btn.addEventListener("click", async () => {
+					if (btn instanceof HTMLButtonElement) {
+						btn.disabled = true;
+					}
+
 					nombre.textContent = "Cargando...";
 					foto.style.display = "none";
 
