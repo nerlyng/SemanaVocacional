@@ -176,7 +176,7 @@
 		<script>
 			const btnCompartir = document.getElementById("btnCompartir");
 
-			const btn = document.getElementById("btn");
+			const btn = document.getElementById("btn") as HTMLButtonElement | null;
 			const nombre = document.getElementById("nombre");
 			const foto = document.getElementById("fotoseminarista") as HTMLImageElement | null;
 			const contador = document.getElementById("contador");
@@ -225,8 +225,7 @@
 			if (btn && nombre && foto) {
 				btn.addEventListener("click", async () => {
 					
-					if (btn instanceof HTMLButtonElement &&  localStorage.getItem("yaRezo")) 
-					{
+					if (btn && localStorage.getItem("yaRezo")) {
 						btn.disabled = true;
 						btn.textContent = "🙏 Ya estás rezando";
 					}
