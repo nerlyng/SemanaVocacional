@@ -220,7 +220,8 @@
 			} 
 
 			// Ejecutar al cargar la página
- 			 fetchTotal();
+ 			if (localStorage.getItem("yaRezo"))
+			{		fetchTotal();}
 
 			if (btn && nombre && foto) {
 				btn.addEventListener("click", async () => {
