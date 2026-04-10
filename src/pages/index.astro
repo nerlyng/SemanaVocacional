@@ -59,8 +59,8 @@
 		margin-top: 10px;
 	}
 
-	#titulo {
-		font-size: 20px;
+	#titulo1 {
+		font-size: 25px;
 		font-weight: 500;
 		color: #555;
 		margin-bottom: 10px;
@@ -146,7 +146,7 @@
 		/>
 		
 		<div class="card">
-			<div id="titulo">Reza por la vocación de</div>
+			<div id="titulo1">Reza por la vocación de </div>
 			<button id="btn">🙏 Rezaré por</button>
 
 			<div id="nombre"></div>
@@ -186,7 +186,7 @@
 			const anno = document.getElementById("anno");
 			const parroquia = document.getElementById("parroquia");
 			const btn = document.getElementById("btn") as HTMLButtonElement | null;
-			const titulo = document.getElementById("titulo");
+			const titulo1 = document.getElementById("titulo1");
 
 			//Cargar el seminarista guardado en localStorage para mostrarlo al cargar la página	
 			const dataGuardada = localStorage.getItem("seminarista");
@@ -198,7 +198,7 @@
 				if (nombre) nombre.textContent = data.nombre ?? "";
 				if (anno) anno.textContent = data.anno ?? "";
 				if (parroquia) parroquia.textContent = data.parroquia ?? "";
-				if (titulo) titulo.textContent = "🙏 Ya estas rezando por la vocación de ";
+				if (titulo1) titulo1.textContent = "🙏 Ya estas rezando por la vocación de ";
 				
 				if (data.foto) {
 					foto.src = data.foto;
@@ -321,7 +321,7 @@
 					
 					//Mandar a guardar el seminarista en localStorage para mostrarlo en la página de agradecimiento
 					localStorage.setItem("seminarista", JSON.stringify(data));
-					if (titulo) titulo.textContent = "🙏 Ya estas rezando por la vocación de ";
+					if (titulo1) titulo1.textContent = "🙏 Ya estas rezando por la vocación de ";
 					
 				} catch (err) {
 						nombre.textContent = "❌ Error al obtener el seminarista.";
