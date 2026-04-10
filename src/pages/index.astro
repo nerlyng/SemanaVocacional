@@ -175,21 +175,24 @@
 
 		<script>
 			const btnCompartir = document.getElementById("btnCompartir");
-
-			const btn = document.getElementById("btn") as HTMLButtonElement | null;
-			// 🔥 VALIDAR AL CARGAR
-			if (btn && localStorage.getItem("yaRezo")) {
-				btn.disabled = true;
-				btn.textContent = "🙏 Ya estás rezando";
-			//	btn.style.display = "none";
-			}
-
 			const nombre = document.getElementById("nombre");
 			const foto = document.getElementById("fotoseminarista") as HTMLImageElement | null;
 			const contador = document.getElementById("contador");
 			
 			const anno = document.getElementById("anno");
 			const parroquia = document.getElementById("parroquia");
+
+			const btn = document.getElementById("btn") as HTMLButtonElement | null;
+			
+			// 🔥 VALIDAR AL CARGAR
+			if (btn && localStorage.getItem("yaRezo")) {
+				btn.disabled = true;
+				btn.textContent = "🙏 Ya estás rezando";
+				if(nombre)
+				{
+					nombre.textContent = "🙏 Gracias por tu oración";
+				}
+			}
 
 			// Función para animar el contador
 			function animateCounter(oldValue: number, newValue: number) 
