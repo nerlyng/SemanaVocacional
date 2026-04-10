@@ -190,10 +190,8 @@
 
 				// Mostrar datos guardados
 				if (nombre) nombre.textContent = data.nombre ?? "";
-
 				if (anno) anno.textContent = data.anno ?? "";
 				if (parroquia) parroquia.textContent = data.parroquia ?? "";
-
 				if (data.foto) {
 					foto.src = data.foto;
 					foto.style.display = "block";
@@ -210,8 +208,6 @@
 			if (btn && localStorage.getItem("yaRezo")) {
 				btn.disabled = true;
 				btn.textContent = "🙏 Ya estás rezando";
-				//if(nombre){
-				//	nombre.textContent = "🙏 Gracias por tu oración";}
 			}
 
 			// Función para animar el contador
@@ -257,7 +253,7 @@
 				
 					//Codigo para evitar que se pulse varias veces
 					btn.disabled = true;
-					btn.textContent = "🙏 Ya estás rezando";
+					//btn.textContent = "🙏 Ya estás rezando";
 					localStorage.setItem("yaRezo", "true");
 					if(nombre){
 					nombre.textContent = "🙏 Gracias por tu oración";}
