@@ -220,8 +220,7 @@
 			} 
 
 			// Ejecutar al cargar la página
- 			if (localStorage.getItem("yaRezo"))
-			{		fetchTotal();}
+ 			fetchTotal();
 
 			if (btn && nombre && foto) {
 				btn.addEventListener("click", async () => {
@@ -231,7 +230,6 @@
 						btn.style.display = "none";
 						btn.textContent = "🙏 Ya estás rezando";
 					}
-					
 					localStorage.setItem("yaRezo", "true");
 
 					nombre.textContent = "Cargando...";
