@@ -178,10 +178,10 @@
 
 			const btn = document.getElementById("btn") as HTMLButtonElement | null;
 			// 🔥 VALIDAR AL CARGAR
-if (btn && localStorage.getItem("yaRezo")) {
-	btn.disabled = true;
-	btn.style.display = "none";
-}
+			if (btn && localStorage.getItem("yaRezo")) {
+				btn.disabled = true;
+				btn.style.display = "none";
+			}
 
 			const nombre = document.getElementById("nombre");
 			const foto = document.getElementById("fotoseminarista") as HTMLImageElement | null;
@@ -234,7 +234,7 @@ if (btn && localStorage.getItem("yaRezo")) {
 					//if (btn && localStorage.getItem("yaRezo")) {
 						btn.disabled = true;
 						btn.style.display = "none";
-					//btn.textContent = "🙏 Ya estás rezando";
+						btn.textContent = "🙏 Ya estás rezando";
 					//}
 					localStorage.setItem("yaRezo", "true");
 
