@@ -188,10 +188,8 @@
 			if (btn && localStorage.getItem("yaRezo")) {
 				btn.disabled = true;
 				btn.textContent = "🙏 Ya estás rezando";
-				if(nombre)
-				{
-					nombre.textContent = "🙏 Gracias por tu oración";
-				}
+				if(nombre){
+					nombre.textContent = "🙏 Gracias por tu oración";}
 			}
 
 			// Función para animar el contador
@@ -234,13 +232,12 @@
 
 			if (btn && nombre && foto) {
 				btn.addEventListener("click", async () => {
-					
-					//if (btn && localStorage.getItem("yaRezo")) {
-						btn.disabled = true;
-					//	btn.style.display = "none";
-						btn.textContent = "🙏 Ya estás rezando";
-					//}
+				
+					btn.disabled = true;
+					btn.textContent = "🙏 Ya estás rezando";
 					localStorage.setItem("yaRezo", "true");
+					if(nombre){
+					nombre.textContent = "🙏 Gracias por tu oración";}
 
 					nombre.textContent = "Cargando...";
 					foto.style.display = "none";
