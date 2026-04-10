@@ -225,12 +225,13 @@
 			if (btn && nombre && foto) {
 				btn.addEventListener("click", async () => {
 					
-					if (btn ){//&& localStorage.getItem("yaRezo")) {
+					if (btn && localStorage.getItem("yaRezo")) {
 						btn.disabled = true;
+						btn.style.display = "none";
 						btn.textContent = "🙏 Ya estás rezando";
 					}
 					
-				//	localStorage.setItem("yaRezo", "true");
+					localStorage.setItem("yaRezo", "true");
 
 					nombre.textContent = "Cargando...";
 					foto.style.display = "none";
