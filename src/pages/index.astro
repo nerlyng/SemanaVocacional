@@ -257,7 +257,6 @@
 					//Codigo para evitar que se pulse varias veces
 					btn.disabled = true;
 					btn.style.display = "none";
-					if (titulo) titulo.textContent = "🙏 Ya estas rezando por la vocación de ";
 					localStorage.setItem("yaRezo", "true");
 					
 					nombre.textContent = "Cargando...";
@@ -317,6 +316,7 @@
 					
 					//Mandar a guardar el seminarista en localStorage para mostrarlo en la página de agradecimiento
 					localStorage.setItem("seminarista", JSON.stringify(data));
+					if (titulo) titulo.textContent = "🙏 Ya estas rezando por la vocación de ";
 					
 				} catch (err) {
 						nombre.textContent = "❌ Error al obtener el seminarista.";
