@@ -316,12 +316,15 @@
 						btnCompartir.style.display = "inline-block";
 						btnCompartir.onclick = () => {
 
-						const texto = `🙏 Hoy rezaré por ${data.nombre}
+						const texto = `🙏 *Este año me comprometo a rezar por la vocación de:*
+
+						👤 *${data.nombre}*
 						📍 ${data.parroquia ?? ""}
 						🎓 ${data.anno ?? ""}
-						Únete a esta iniciativa de oración 🙌
-						https://semanavocacional.vercel.app/ `;
 
+						🙌 Únete a esta iniciativa de oración
+						👉 https://semanavocacional.vercel.app/`;
+						
 						const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
 						window.open(url, "_blank");
 						};
