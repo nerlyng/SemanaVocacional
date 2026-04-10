@@ -141,7 +141,7 @@
 		
 		<div class="card">
 
-			<h1>Reza por la vocación de</h1>
+			<h1 id = "titulo">Reza por la vocación de</h1>
 			<button id="btn">🙏 Rezaré por</button>
 
 			<div id="nombre"></div>
@@ -181,7 +181,8 @@
 			const anno = document.getElementById("anno");
 			const parroquia = document.getElementById("parroquia");
 			const btn = document.getElementById("btn") as HTMLButtonElement | null;
-			
+			const titulo = document.getElementById("titulo");
+
 			//Cargar el seminarista guardado en localStorage para mostrarlo al cargar la página	
 			const dataGuardada = localStorage.getItem("seminarista");
 			if (dataGuardada && nombre && foto) 
@@ -192,6 +193,8 @@
 				if (nombre) nombre.textContent = data.nombre ?? "";
 				if (anno) anno.textContent = data.anno ?? "";
 				if (parroquia) parroquia.textContent = data.parroquia ?? "";
+				if (titulo) titulo.textContent = "🙏 Ya estas rezando por la vocación de ";
+				
 				if (data.foto) {
 					foto.src = data.foto;
 					foto.style.display = "block";
