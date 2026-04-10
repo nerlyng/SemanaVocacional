@@ -206,7 +206,7 @@
 				if (nombre) nombre.textContent = data.nombre ?? "";
 				if (anno) anno.textContent = data.anno ?? "";
 				if (parroquia) parroquia.textContent = data.parroquia ?? "";
-				if (titulo1) titulo1.textContent = "🙏 Ya estas rezando por la vocación de";
+				if (titulo1) titulo1.textContent = "🙏 Ya estas rezando por la vocación de:";
 				
 				if (data.foto) {
 					foto.src = data.foto;
@@ -329,7 +329,7 @@
 					
 					//Mandar a guardar el seminarista en localStorage para mostrarlo en la página de agradecimiento
 					localStorage.setItem("seminarista", JSON.stringify(data));
-					if (titulo1) titulo1.textContent = "🙏 Ya estas rezando por la vocación de ";
+					if (titulo1) titulo1.textContent = "🙏 Ya estas rezando por la vocación de:";
 					
 				} catch (err) {
 						nombre.textContent = "❌ Error al obtener el seminarista.";
