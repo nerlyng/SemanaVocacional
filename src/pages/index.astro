@@ -189,7 +189,7 @@
 				const data = JSON.parse(dataGuardada);
 
 				// Mostrar datos guardados
-				nombre.textContent = data.nombre;
+				if (nombre) nombre.textContent = data.nombre ?? "";
 
 				if (anno) anno.textContent = data.anno ?? "";
 				if (parroquia) parroquia.textContent = data.parroquia ?? "";
