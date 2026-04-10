@@ -178,12 +178,34 @@
 			const nombre = document.getElementById("nombre");
 			const foto = document.getElementById("fotoseminarista") as HTMLImageElement | null;
 			const contador = document.getElementById("contador");
-			
 			const anno = document.getElementById("anno");
 			const parroquia = document.getElementById("parroquia");
-
 			const btn = document.getElementById("btn") as HTMLButtonElement | null;
 			
+			//Cargar el seminarista guardado en localStorage para mostrarlo al cargar la página	
+			const dataGuardada = localStorage.getItem("seminarista");
+			if (dataGuardada && nombre && foto) 
+			{
+				const data = JSON.parse(dataGuardada);
+
+				// Mostrar datos guardados
+				nombre.textContent = data.nombre;
+
+				if (anno) anno.textContent = data.anno ?? "";
+				if (parroquia) parroquia.textContent = data.parroquia ?? "";
+
+				if (data.foto) {
+					foto.src = data.foto;
+					foto.style.display = "block";
+				}
+				// 🔒 bloquear botón
+				if (btn) {
+					btn.disabled = true;
+					btn.style.display = "none";
+				}
+			}
+			//************************************** */
+
 			// 🔥 VALIDAR AL CARGAR
 			if (btn && localStorage.getItem("yaRezo")) {
 				btn.disabled = true;
@@ -233,6 +255,7 @@
 			if (btn && nombre && foto) {
 				btn.addEventListener("click", async () => {
 				
+					//Codigo para evitar que se pulse varias veces
 					btn.disabled = true;
 					btn.textContent = "🙏 Ya estás rezando";
 					localStorage.setItem("yaRezo", "true");
@@ -258,8 +281,8 @@
 						// Mostrar nombre
 						nombre.textContent = data.nombre;
 						if (anno) {
- 						 anno.textContent = data.anno ?? "";
-				}							
+ 						 anno.textContent = data.anno ?? "";		
+						}							
 
 				if (parroquia) {
   				parroquia.textContent = data.parroquia ?? "";
@@ -294,7 +317,10 @@
 						};
 					}
 					
-					} catch (err) {
+					//Mandar a guardar el seminarista en localStorage para mostrarlo en la página de agradecimiento
+					localStorage.setItem("seminarista", JSON.stringify(data));
+					
+				} catch (err) {
 						nombre.textContent = "❌ Error al obtener el seminarista.";
 						foto.style.display = "none";
 						console.error(err);
