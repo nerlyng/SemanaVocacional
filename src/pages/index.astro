@@ -197,33 +197,34 @@
 			const titulo1 = document.getElementById("titulo1");
 
 			////Cargar el seminarista guardado en localStorage para mostrarlo al cargar la página	
-//			const dataGuardada = localStorage.getItem("seminarista");
-//			if (dataGuardada && nombre && foto) 
-//			{
-//				const data = JSON.parse(dataGuardada);
-//
+			const dataGuardada = localStorage.getItem("seminarista");
+			if (dataGuardada && nombre && foto) 
+			{
+				const data = JSON.parse(dataGuardada);
+
 			//	// Mostrar datos guardados
-			//	if (nombre) nombre.textContent = data.nombre ?? "";
-			//	if (anno) anno.textContent = data.anno ?? "";
-			//	if (parroquia) parroquia.textContent = data.parroquia ?? "";
-			//	if (titulo1) titulo1.textContent = "🙏 Ya estas rezando por la vocación de:";
-				
-			//	if (data.foto) {
-			//		foto.src = data.foto;
-			//		foto.style.display = "block";
-			//	}
-			//	// 🔒 bloquear botón
-			//	if (btn) {
-			//		btn.disabled = true;
-			//		btn.style.display = "none";
-			//	}
-			//}
+				if (nombre) nombre.textContent = data.nombre ?? "";
+				if (anno) anno.textContent = data.anno ?? "";
+				if (parroquia) parroquia.textContent = data.parroquia ?? "";
+				if (titulo1) titulo1.textContent = "🙏 Ya estas rezando por la vocación de:";
+	
+				if (data.foto) {
+					foto.src = data.foto;
+					foto.style.display = "block";
+				}
+				// 🔒 bloquear botón
+				if (btn) {
+					btn.disabled = true;
+					btn.style.display = "none";
+				}
+			}
 		
 
 			// 🔥 VALIDAR AL CARGAR
-		//	if (btn && localStorage.getItem("yaRezo")) {
-		//		btn.disabled = true;
-			//}
+			if (btn && localStorage.getItem("yaRezo")) {
+				btn.disabled = true;
+			}
+
 	//************************************** */
 			// Función para animar el contador
 			function animateCounter(oldValue: number, newValue: number) 
@@ -267,9 +268,9 @@
 				btn.addEventListener("click", async () => {
 				
 					//*************Codigo para evitar que se pulse varias veces***********
-					//btn.disabled = true;
-				//	btn.style.display = "none";
-				//	localStorage.setItem("yaRezo", "true");
+					btn.disabled = true;
+					btn.style.display = "none";
+					localStorage.setItem("yaRezo", "true");
 					//*************************************************************** */
 					
 					nombre.textContent = "Cargando...";
@@ -331,8 +332,8 @@
 					}
 					
 					//Mandar a guardar el seminarista en localStorage para mostrarlo en la página de agradecimiento
-					//localStorage.setItem("seminarista", JSON.stringify(data));
-					//if (titulo1) titulo1.textContent = "🙏 Ya estas rezando por la vocación de:";
+					localStorage.setItem("seminarista", JSON.stringify(data));
+					if (titulo1) titulo1.textContent = "🙏 Ya estas rezando por la vocación de:";
 					
 				} catch (err) {
 						nombre.textContent = "❌ Error al obtener el seminarista.";
