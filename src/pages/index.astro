@@ -196,11 +196,41 @@
 			const btn = document.getElementById("btn") as HTMLButtonElement | null;
 			const titulo1 = document.getElementById("titulo1");
 
+			type Seminarista = {
+				nombre: string;
+				parroquia?: string;
+				anno?: string;
+				foto?: string;
+			};
+
+		function configurarBotonCompartir(data: Seminarista) {
+			if (!btnCompartir) return;
+
+			btnCompartir.style.display = "inline-block";
+
+			btnCompartir.onclick = () => {
+			const texto = `🙏 *Este año me comprometo a rezar por la vocación de:*
+
+			👤 *${data.nombre}*
+			${data.parroquia ? `📍 ${data.parroquia}` : ""}
+			${data.anno ? `🎓 ${data.anno}` : ""}
+
+			🙌 Acompáñame en esta oración
+			👉 https://semanavocacional.vercel.app/`;
+
+			const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
+			window.open(url, "_blank");
+			};
+		}
+
+
 			////Cargar el seminarista guardado en localStorage para mostrarlo al cargar la página	
 			const dataGuardada = localStorage.getItem("seminarista");
 			if (dataGuardada && nombre && foto) 
 			{
 				const data = JSON.parse(dataGuardada);
+
+				configurarBotonCompartir(data);
 
 			//	// Mostrar datos guardados
 				if (nombre) nombre.textContent = data.nombre ?? "";
@@ -219,13 +249,12 @@
 				}
 			}
 		
-
 			// 🔥 VALIDAR AL CARGAR
 			if (btn && localStorage.getItem("yaRezo")) {
 				btn.disabled = true;
 			}
+			//************************************** */
 
-	//************************************** */
 			// Función para animar el contador
 			function animateCounter(oldValue: number, newValue: number) 
 			{
@@ -236,18 +265,19 @@
     			const elapsed = currentTime - startTime;
 		   		const progress = Math.min(elapsed / duration, 1);
     			const value = Math.floor(oldValue + (newValue - oldValue) * progress);
-    		if (contador) {  contador.textContent = `Total de intenciones: ${value}`; }
+    			if (contador) {  contador.textContent = `Total de intenciones: ${value}`; }
     			if (progress < 1) requestAnimationFrame(update);
   				}
-	  				requestAnimationFrame(update);
+	  			requestAnimationFrame(update);
 			}
 
 			 // Función para obtener el total de intenciones
  			let lastTotal = 0;
 
-			async function fetchTotal() {
+			async function fetchTotal() 
+			{
 				if (!contador) return; // ⚠️ salir si el elemento no existe
-   			 try {
+   				try {
 			   	   const res = await fetch("/api/intenciones-count");
   			    if (!res.ok) throw new Error("Error al obtener el total");
   			    const data = await res.json();
@@ -260,6 +290,7 @@
   			    console.error(err);
   			  }
 			} 
+
 
 			// Ejecutar al cargar la página
  			fetchTotal();
@@ -312,24 +343,7 @@
         			fetchTotal();
 					
 					//Poner lo de compartir WhatsApp
-					if (btnCompartir) 
-					{
-						btnCompartir.style.display = "inline-block";
-						btnCompartir.onclick = () => {
-
-						const texto = `🙏 *Este año me comprometo a rezar por la vocación de:*
-						
-						👤 *${data.nombre}*
-						📍 ${data.parroquia ?? ""}
-						🎓 ${data.anno ?? ""}
-						
-						🙌 Acompáñame en esta oración por las vocaciones.
-						👉 https://semanavocacional.vercel.app/`;
-						
-						const url = `https://wa.me/?text=${encodeURIComponent(texto)}`;
-						window.open(url, "_blank");
-						};
-					}
+					configurarBotonCompartir(data);
 					
 					//Mandar a guardar el seminarista en localStorage para mostrarlo en la página de agradecimiento
 					localStorage.setItem("seminarista", JSON.stringify(data));
@@ -342,6 +356,11 @@
 					}
 				});
 			}
+
+		
+
+
+
 		</script>
 	</body>
 </html>
