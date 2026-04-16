@@ -25,19 +25,24 @@
 		width: 220px;
 		margin-bottom: 10px;
 	}
-	.evento {
-		font-size: 18px;
-		font-weight: 700;
-		color: #c49b63; /* dorado */
-		letter-spacing: 1px;
-		margin-bottom: 5px;
-	}
+.evento-badge {
+	display: inline-block;
+	background: linear-gradient(135deg, #c49b63, #e6c48a);
+	color: white;
+	font-weight: 600;
+	font-size: 14px;
+	padding: 6px 14px;
+	border-radius: 20px;
+	margin-bottom: 8px;
+	box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
 
-	.fecha-evento {
-		font-size: 16px;
-		color: #3b2e83; /* morado del diseño */
-		margin-bottom: 15px;
-	}
+.fecha-evento {
+	font-size: 15px;
+	color: #3b2e83;
+	margin-bottom: 15px;
+	font-weight: 500;
+}
 
 	.card {
 		background: white;
@@ -164,14 +169,15 @@
 			style="width: 250px; margin-bottom: 20px"
 		/>
 		
-		<p class="evento">
-				⛪ Semana de las Vocaciones
-		</p>
-		<p class="fecha-evento">
-			19 – 26 de abril 2026
-		</p>
-		
+			
 		<div class="card">
+<div class="evento-badge">
+	⛪ Semana de las Vocaciones
+</div>
+<div class="fecha-evento">
+	19 – 26 de abril 2026
+</div>
+
 			<p id="titulo1" class="titulo1"> Reza por la vocación de un seminarista. </p>
 			<!--<p id="titulo1" class="titulo1"> Inicia el sabado 18 de abril.... </p>-->
 			<button id="btn">🙏 Rezaré por</button>
